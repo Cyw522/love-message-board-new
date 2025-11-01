@@ -2,7 +2,7 @@
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>春娇与志明</title>
     <style>
         * {
@@ -669,58 +669,6 @@
             }
         }
         
-        /* 响应式设计 */
-        @media (max-width: 768px) {
-            svg {
-                width: 300px;
-                height: 280px;
-            }
-            
-            #name-text {
-                font-size: 18px;
-            }
-            
-            #yes-button {
-                font-size: 16px;
-                padding: 8px 20px;
-            }
-            
-            .glow-1 {
-                width: 350px;
-                height: 350px;
-            }
-            
-            .glow-2 {
-                width: 500px;
-                height: 500px;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            svg {
-                width: 250px;
-                height: 230px;
-            }
-            
-            #name-text {
-                font-size: 16px;
-            }
-            
-            #yes-button {
-            font-size: 14px;
-            padding: 6px 16px;
-        }
-        
-        .glow-1 {
-            width: 280px;
-            height: 280px;
-        }
-        
-        .glow-2 {
-            width: 400px;
-            height: 400px;
-        }
-        
         /* 计时工具样式 */
         .countdown-container {
             position: relative;
@@ -750,7 +698,32 @@
             border-radius: 20px;
         }
         
+        /* 响应式设计 */
         @media (max-width: 768px) {
+            svg {
+                width: 300px;
+                height: 280px;
+            }
+            
+            #name-text {
+                font-size: 18px;
+            }
+            
+            #yes-button {
+                font-size: 16px;
+                padding: 8px 20px;
+            }
+            
+            .glow-1 {
+                width: 350px;
+                height: 350px;
+            }
+            
+            .glow-2 {
+                width: 500px;
+                height: 500px;
+            }
+            
             .countdown-container {
                 font-size: 16px;
                 padding: 12px 20px;
@@ -759,16 +732,175 @@
             .countdown-days {
                 font-size: 24px;
             }
+            
+            /* 模态框适配 */
+            .modal-content {
+                width: 80%;
+                max-width: 500px;
+                padding: 20px;
+            }
+            
+            /* 轮盘适配 */
+            .wheel-container {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .wheel-section {
+                font-size: 14px;
+            }
+            
+            /* 表单适配 */
+            .form-input {
+                font-size: 16px; /* 防止iOS缩放 */
+            }
         }
         
         @media (max-width: 480px) {
+            body {
+                font-size: 16px; /* 防止iOS缩放 */
+                -webkit-tap-highlight-color: transparent; /* 移除触摸高亮 */
+            }
+            
+            .container {
+                padding: 0 10px;
+                transform: scale(0.9);
+            }
+            
+            svg {
+                width: 250px;
+                height: 230px;
+            }
+            
+            #name-text {
+                font-size: 16px;
+                transform: scale(0.95);
+            }
+            
+            #yes-button {
+                font-size: 14px;
+                padding: 6px 16px;
+                min-height: 44px;
+            }
+            
+            .glow-1 {
+                width: 280px;
+                height: 280px;
+            }
+            
+            .glow-2 {
+                width: 400px;
+                height: 400px;
+            }
+            
             .countdown-container {
                 font-size: 14px;
                 padding: 10px 15px;
+                margin: 15px auto;
+                min-width: auto;
+                width: 90%;
             }
             
             .countdown-days {
                 font-size: 20px;
+            }
+            
+            /* 模态框适配 */
+            .modal {
+                padding: 10px;
+            }
+            
+            .modal-content {
+                width: 95%;
+                padding: 15px;
+                margin: 20px auto;
+            }
+            
+            .modal-title {
+                font-size: 20px;
+            }
+            
+            /* 轮盘适配 */
+            .wheel-container {
+                width: 200px;
+                height: 200px;
+                margin: 15px auto;
+            }
+            
+            .wheel-section {
+                font-size: 12px;
+                padding: 0;
+            }
+            
+            .spin-button {
+                width: 80px;
+                height: 80px;
+                font-size: 14px;
+            }
+            
+            /* 表单适配 */
+            .form-group {
+                margin-bottom: 12px;
+            }
+            
+            .form-input {
+                width: 100%;
+                padding: 12px;
+                font-size: 16px; /* 防止iOS缩放 */
+                border-radius: 8px;
+                min-height: 44px; /* 提高点击区域 */
+            }
+            
+            .submit-button {
+                padding: 12px;
+                font-size: 16px;
+                min-height: 44px;
+                width: 100%;
+            }
+            
+            /* 音乐控制按钮适配 */
+            .music-control {
+                width: 44px;
+                height: 44px;
+                top: 15px;
+                right: 15px;
+            }
+            
+            /* 数据面板适配 */
+            #data-panel {
+                width: 95%;
+                margin: 0 auto;
+                overflow-x: auto;
+            }
+            
+            .data-table {
+                width: 100%;
+                font-size: 12px;
+            }
+            
+            /* 幸运天数计算器适配 */
+            #daysCounter {
+                font-size: 16px;
+                padding: 10px;
+            }
+        }
+        
+        /* 触摸设备优化 */
+        @media (hover: none) and (pointer: coarse) {
+            #yes-button:active {
+                transform: scale(0.95);
+            }
+            
+            .music-control:active {
+                transform: scale(0.95);
+            }
+            
+            .spin-button:active {
+                transform: scale(0.95);
+            }
+            
+            .submit-button:active {
+                transform: scale(0.95);
             }
         }
         
@@ -1352,8 +1484,8 @@
                 createSparkles(this);
             });
             
-            // 优化按钮点击效果
-            yesButton.addEventListener('click', function() {
+            // 按钮点击处理函数
+            function handleButtonInteraction() {
                 // 创建心形爆炸效果
                 createHeartBurst(this);
                 
@@ -1370,12 +1502,23 @@
                 setTimeout(() => {
                     const modal = document.getElementById('modal');
                     modal.classList.add('active');
+                    // 模态框激活时滚动到顶部
+                    window.scrollTo(0, 0);
                 }, 1000);
                 
                 // 按钮禁用
                 this.disabled = true;
                 this.style.opacity = '0.6';
                 this.style.cursor = 'not-allowed';
+            }
+            
+            // 添加点击事件
+            yesButton.addEventListener('click', handleButtonInteraction);
+            
+            // 添加触摸事件（移动设备优化）
+            yesButton.addEventListener('touchstart', function(e) {
+                e.preventDefault(); // 防止触发点击事件
+                handleButtonInteraction.call(this);
             });
             
             // 创建下落的星星
@@ -1485,7 +1628,8 @@
             const prizes = ['奶茶', '小蛋糕', '项链', '给阿常说早安', '零食礼包', '花'];
             let spinning = false;
             
-            spinButton.addEventListener('click', function() {
+            // 轮盘旋转处理函数
+            function handleSpinWheel() {
                 if (spinning) return;
                 
                 spinning = true;
@@ -1518,9 +1662,18 @@
                     prizeResult.textContent = `恭喜获得: ${prize}`;
                     prizeInput.value = prize;
                     spinning = false;
-                    spinButton.disabled = false;
-                }, 3000);
-            });
+                spinButton.disabled = false;
+            }, 3000);
+        }
+        
+        // 添加点击事件
+        spinButton.addEventListener('click', handleSpinWheel);
+        
+        // 添加触摸事件（移动设备优化）
+        spinButton.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // 防止触发点击事件
+            handleSpinWheel();
+        });
             
             // 模态框表单提交处理
             const modalForm = document.getElementById('modal-form');
@@ -1551,6 +1704,9 @@
                 submitButton.disabled = true;
                 submitButton.textContent = '发送中...';
                 
+                // 滚动到按钮位置，让用户看到加载状态
+                submitButton.scrollIntoView({ behavior: 'smooth' });
+                
                 try {
                     // 准备用户信息用于邮件发送
                     const userInfo = {
@@ -1577,6 +1733,8 @@
                     // 异常处理
                     console.error('提交过程中发生错误:', error);
                     alert('提交过程中发生错误，请稍后重试');
+                    // 滚动到页面顶部，方便用户重试
+                    window.scrollTo(0, 0);
                 } finally {
                     // 恢复按钮状态
                     submitButton.disabled = false;
@@ -1585,6 +1743,24 @@
                     // 隐藏模态框
                     const modal = document.getElementById('modal');
                     modal.classList.remove('active');
+                }
+            });
+            
+            // 为移动设备优化表单输入体验
+            const formInputs = modalForm.querySelectorAll('input, textarea');
+            formInputs.forEach(input => {
+                // 优化输入框聚焦行为
+                input.addEventListener('focus', function() {
+                    // 在移动设备上，当键盘弹出时，确保输入框可见
+                    setTimeout(() => {
+                        this.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    }, 300);
+                });
+                
+                // 对于电话号码输入框，优化键盘类型
+                if (input.id === 'phone') {
+                    input.setAttribute('pattern', '[0-9]*');
+                    input.setAttribute('inputmode', 'numeric');
                 }
             });
             
@@ -1783,10 +1959,26 @@
 // 音乐功能
     console.log('音乐功能初始化');
     
-    // 创建音频对象
-    var audio = new Audio('../恋人.mp3');
+    // 创建音频对象 - 更新为GitHub Releases链接
+    var audioFiles = [
+        'https://github.com/Cyw522/love-message-board-new/releases/download/v1.0/chunjiao.mp3',
+        'https://github.com/Cyw522/love-message-board-new/releases/download/v1.0/lianren.mp3'
+    ];
+    
+    // 随机选择一个音频文件
+    var randomIndex = Math.floor(Math.random() * audioFiles.length);
+    var audio = new Audio(audioFiles[randomIndex]);
     audio.volume = 0.5;
     audio.loop = true;
+    
+    // 当一个音频播放结束后，切换到另一个音频
+    audio.onended = function() {
+        randomIndex = (randomIndex + 1) % audioFiles.length;
+        audio.src = audioFiles[randomIndex];
+        audio.play().catch(function(e) {
+            console.error('播放切换失败:', e);
+        });
+    };
     
     // 错误处理
     audio.onerror = function(e) {
@@ -1797,14 +1989,26 @@
     audio.play().then(function() {
         console.log('自动播放成功');
     }).catch(function(err) {
-        console.log('自动播放被阻止，点击页面播放');
-        document.onclick = function() {
+        console.log('自动播放被阻止，点击或触摸页面播放');
+        
+        // 添加点击事件播放
+        function playAudio() {
             audio.play().then(function() {
-                console.log('点击后播放成功');
+                console.log('交互后播放成功');
+                // 移除事件监听器，避免重复播放
+                document.removeEventListener('click', playAudio);
+                document.removeEventListener('touchstart', playAudio);
             }).catch(function(e) {
-                console.error('点击后播放失败:', e);
+                console.error('交互后播放失败:', e);
             });
-        };
+        }
+        
+        // 同时支持鼠标点击和触摸事件
+        document.addEventListener('click', playAudio);
+        document.addEventListener('touchstart', function(e) {
+            e.preventDefault(); // 防止触发点击事件
+            playAudio();
+        }, { passive: false });
     });
     
     console.log('音乐功能初始化完成');
