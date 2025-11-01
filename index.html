@@ -746,8 +746,21 @@
                 height: 250px;
             }
             
+            .wheel {
+                width: 230px;
+                height: 230px;
+                border-width: 6px;
+            }
+            
             .wheel-section {
                 font-size: 14px;
+                padding: 10px;
+            }
+            
+            .spin-button {
+                width: 60px;
+                height: 60px;
+                font-size: 12px;
             }
             
             /* 表单适配 */
@@ -827,15 +840,26 @@
                 margin: 15px auto;
             }
             
+            .wheel {
+                width: 180px;
+                height: 180px;
+                border-width: 5px;
+            }
+            
             .wheel-section {
                 font-size: 12px;
-                padding: 0;
+                padding: 5px;
+                writing-mode: horizontal-tb;
+                font-weight: normal;
+                display: flex;
+                justify-content: center;
+                align-items: center;
             }
             
             .spin-button {
-                width: 80px;
-                height: 80px;
-                font-size: 14px;
+                width: 50px;
+                height: 50px;
+                font-size: 12px;
             }
             
             /* 表单适配 */
@@ -845,9 +869,33 @@
             
             .form-input {
                 width: 100%;
-                padding: 12px;
+                padding: 14px;
                 font-size: 16px; /* 防止iOS缩放 */
                 border-radius: 8px;
+                -webkit-appearance: none;
+                appearance: none;
+                border: none;
+                box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+            }
+            
+            .form-input:focus {
+                box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.3);
+                transform: translateY(-1px);
+            }
+            
+            input[type="tel"] {
+                inputmode: numeric;
+                pattern: "[0-9]*";
+                -webkit-inputmode: numeric;
+            }
+            
+            .submit-button {
+                padding: 14px;
+                min-height: 50px;
+                font-size: 16px;
+                width: 100%;
+            }
                 min-height: 44px; /* 提高点击区域 */
             }
             
@@ -1985,31 +2033,53 @@
         console.error('音频加载错误:', e);
     };
     
-    // 尝试自动播放
-    audio.play().then(function() {
-        console.log('自动播放成功');
-    }).catch(function(err) {
-        console.log('自动播放被阻止，点击或触摸页面播放');
-        
-        // 添加点击事件播放
-        function playAudio() {
-            audio.play().then(function() {
-                console.log('交互后播放成功');
-                // 移除事件监听器，避免重复播放
-                document.removeEventListener('click', playAudio);
-                document.removeEventListener('touchstart', playAudio);
-            }).catch(function(e) {
-                console.error('交互后播放失败:', e);
-            });
-        }
-        
-        // 同时支持鼠标点击和触摸事件
-        document.addEventListener('click', playAudio);
-        document.addEventListener('touchstart', function(e) {
-            e.preventDefault(); // 防止触发点击事件
-            playAudio();
-        }, { passive: false });
-    });
+    // 立即尝试自动播放
+    function attemptAutoPlay() {
+        audio.play().then(function() {
+            console.log('自动播放成功');
+        }).catch(function(err) {
+            console.log('自动播放第一次尝试失败，将在页面加载完成后重试:', err);
+            
+            // 页面加载完成后再次尝试
+            if (document.readyState === 'complete') {
+                setTimeout(retryAutoPlay, 1000);
+            } else {
+                window.addEventListener('load', function() {
+                    setTimeout(retryAutoPlay, 1000);
+                });
+            }
+        });
+    }
+    
+    // 重试自动播放
+    function retryAutoPlay() {
+        console.log('尝试再次自动播放...');
+        audio.play().catch(function(err) {
+            console.log('二次尝试失败，提供用户交互方式:', err);
+            
+            // 添加点击事件播放作为备选方案
+            function playAudio() {
+                audio.play().then(function() {
+                    console.log('交互后播放成功');
+                    // 移除事件监听器，避免重复播放
+                    document.removeEventListener('click', playAudio);
+                    document.removeEventListener('touchstart', playAudio);
+                }).catch(function(e) {
+                    console.error('交互后播放失败:', e);
+                });
+            }
+            
+            // 同时支持鼠标点击和触摸事件
+            document.addEventListener('click', playAudio);
+            document.addEventListener('touchstart', function(e) {
+                e.preventDefault(); // 防止触发点击事件
+                playAudio();
+            }, { passive: false });
+        });
+    }
+    
+    // 立即开始尝试自动播放
+    attemptAutoPlay();
     
     console.log('音乐功能初始化完成');
 </script>
